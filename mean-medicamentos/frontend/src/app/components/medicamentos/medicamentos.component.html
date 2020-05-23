@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+        <div class="col s7">
+            <div class="card">
+                <div class="card-content">
+                    <form #medicamentoForm="ngForm" (ngSubmit)="addMedicamento(medicamentoForm)">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="medicamentoService.selectedMedicamento._id">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="codigo" #codigo="ngModel" [(ngModel)]="medicamentoService.selectedMedicamento.codigo" placeholder="Ingrese el codigo del medicamento">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="medicamentoService.selectedMedicamento.nombre" placeholder="Ingrese el nombre del medicamento">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input type="text" name="presentacion" #presentacion="ngModel" [(ngModel)]="medicamentoService.selectedMedicamento.presentacion" placeholder="Ingrese la presentacion del medicamento">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="medicamentoService.selectedMedicamento.descripcion" placeholder="Ingrese la descripcion del medicamento">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <input type="number" name="stock" #stock="ngModel" [(ngModel)]="medicamentoService.selectedMedicamento.stock" placeholder="Ingrese el stock del medicamento">
+                            </div>
+
+                            <div class="card-action">
+                                <div class="input-field col s12">
+                                    <button class="btn green" (click)="resetForm(medicamentoForm)" >Limpiar</button>
+                                    <button class="btn right green">Guardar</button>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col s7">
+            <table>
+                <thead>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Presentacion</th>
+                    <th>Descripcion</th>
+                    <th>Stock</th>
+                    <th>Operaciones</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let medicamento of medicamentoService.Medicamentos">
+                        <td>{{ medicamento.codigo}}</td>
+                        <td>{{ medicamento.nombre}}</td>
+                        <td>{{ medicamento.presentacion}}</td>
+                        <td>{{ medicamento.descripcion}}</td>
+                        <td>{{ medicamento.stock}}</td>
+                        <td>
+                            <a (click)="editMedicamento(medicamento)">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            <a (click)="deleteMedicamento(medicamento._id)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
